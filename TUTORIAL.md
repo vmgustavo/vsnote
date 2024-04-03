@@ -15,3 +15,7 @@ ext install amodio.tsl-problem-matcher
 - [FileSystem API](https://code.visualstudio.com/api/references/vscode-api#FileSystem)
 - [URI API](https://code.visualstudio.com/api/references/vscode-api#Uri)
 - [Scratchpad Extension](https://github.com/buenon/scratchpads)
+
+```
+npm run watch
+```
