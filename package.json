@@ -14,10 +14,6 @@
   "contributes": {
     "commands": [
       {
-        "command": "vsnote.helloWorld",
-        "title": "Hello World"
-      },
-      {
         "command": "vsnote.createScratchPad",
         "title": "Create Scratch Pad"
       }
