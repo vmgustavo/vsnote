@@ -1,0 +1,14 @@
+{
+    "contributes": {
+        "configuration": {
+            "title": "VSNoTE",
+            "properties": {
+                "vsnote.rootDirectory": {
+                    "type": "string",
+                    "default": "./vsnote",
+                    "description": "Root directory to create and save notes."
+                }
+            }
+        }
+    }
+}

@@ -1,8 +1,9 @@
 {
   "name": "vsnote",
-  "displayName": "vsnote",
+  "displayName": "VSNoTE",
   "description": "Very Simple Note Taking Extension",
   "version": "0.0.1",
+  "publisher": "vmg",
   "engines": {
     "vscode": "^1.87.0"
   },
@@ -15,9 +16,19 @@
     "commands": [
       {
         "command": "vsnote.createScratchPad",
-        "title": "Create Scratch Pad"
+        "title": "VSNoTE: Create Scratch Pad"
       }
     ]
+  },
+  "configuration": {
+    "title": "VSNoTE",
+    "properties": {
+      "vsnote.rootDirectory": {
+        "type": "string",
+        "default": "./vsnote",
+        "description": "Root directory to create and save notes."
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
