@@ -19,3 +19,11 @@ ext install amodio.tsl-problem-matcher
 ```
 npm run watch
 ```
+
+```
+npm install vsce
+
+vsce package
+
+code --install-extension vsnote-0.0.1.vsix
+```

@@ -10,9 +10,9 @@ export class NoteManager {
 
     public async createScratchpad() {
         // GET ROOT DIRECTORY FROM CONFIG
-        const config = vscode.workspace.getConfiguration('vsnote');
-        const rootDirectory: string = config.get<string>('mySetting') ?? "";
-        vscode.window.showInformationMessage(`rootDirectory: ${rootDirectory}`)
+        // const config = vscode.workspace.getConfiguration('vsnote');
+        // const rootDirectory: string = config.get<string>('mySetting') ?? "";
+        // vscode.window.showInformationMessage(`rootDirectory: ${rootDirectory}`)
 
         // FORMAT DATE
         let today = new Date();
