@@ -1,15 +1,18 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as vscode from 'vscode';
+import {Config} from './utils';
 
 
-export class ScratchpadsManager {
+export class NoteManager {
 
     constructor() { }
 
     public async createScratchpad() {
         // GET ROOT DIRECTORY FROM CONFIG
-        const config = vscode.workspace.getConfiguration('vsnote').get('createScratchPad');
+        const config = vscode.workspace.getConfiguration('vsnote');
+        const rootDirectory: string = config.get<string>('mySetting') ?? "";
+        vscode.window.showInformationMessage(`rootDirectory: ${rootDirectory}`)
 
         // FORMAT DATE
         let today = new Date();
@@ -45,10 +48,12 @@ export class ScratchpadsManager {
 
 
 export function activate(context: vscode.ExtensionContext) {
-    const scratchpadsManager = new ScratchpadsManager();
+    Config.init(context);
+
+    const noteManager = new NoteManager();
 
     const commands: { [key: string]: (...args: any[]) => any } = {
-        'vsnote.createScratchPad': () => scratchpadsManager.createScratchpad(),
+        'vsnote.createNote': () => noteManager.createScratchpad(),
     };
 
     for (const command in commands) {

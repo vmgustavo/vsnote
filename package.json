@@ -15,12 +15,13 @@
   "contributes": {
     "commands": [
       {
-        "command": "vsnote.createScratchPad",
-        "title": "VSNoTE: Create Scratch Pad"
+        "command": "vsnote.createNote",
+        "title": "VSNoTE: Create Note"
       }
     ]
   },
   "configuration": {
+    "type": "object",
     "title": "VSNoTE",
     "properties": {
       "vsnote.rootDirectory": {
