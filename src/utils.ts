@@ -9,7 +9,6 @@ export class Config {
     this.extensionConfig = vscode.workspace.getConfiguration('vsnote');
   }
 
-
   /**
    * Get the extension configuration (exposed in package.json) for the given key
    * @param key

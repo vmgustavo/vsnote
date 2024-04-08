@@ -1,59 +1,66 @@
 {
-  "name": "vsnote",
-  "displayName": "VSNoTE",
-  "description": "Very Simple Note Taking Extension",
-  "version": "0.0.1",
-  "publisher": "vmg",
-  "engines": {
-    "vscode": "^1.87.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [],
-  "main": "./dist/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "vsnote.createNote",
-        "title": "VSNoTE: Create Note"
-      }
-    ]
-  },
-  "configuration": {
-    "type": "object",
-    "title": "VSNoTE",
-    "properties": {
-      "vsnote.rootDirectory": {
-        "type": "string",
-        "default": "./vsnote",
-        "description": "Root directory to create and save notes."
-      }
+    "name": "vsnote",
+    "displayName": "vsnote",
+    "description": "Very Simple Note Taking Extension",
+    "version": "0.0.1",
+    "publisher": "vmg",
+    "engines": {
+        "vscode": "^1.87.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [],
+    "main": "./dist/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "vsnote.createNote",
+                "title": "vsnote: Create Note"
+            },
+            {
+                "command": "vsnote.setDir",
+                "title": "vsnote: Set Directory"
+            },
+            {
+                "command": "vsnote.getDir",
+                "title": "vsnote: Get Directory"
+            }
+        ],
+        "configuration": {
+            "title": "vsnote",
+            "properties": {
+                "vsnote.rootDirectory": {
+                    "type": "string",
+                    "description": "Root directory to create and save notes.",
+                    "default": "/tmp"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run package",
+        "compile": "webpack",
+        "watch": "webpack --watch",
+        "package": "webpack --mode production --devtool hidden-source-map",
+        "compile-tests": "tsc -p . --outDir out",
+        "watch-tests": "tsc -p . -w --outDir out",
+        "pretest": "npm run compile-tests && npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "vscode-test"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.87.0",
+        "@types/mocha": "^10.0.6",
+        "@types/node": "18.x",
+        "@typescript-eslint/eslint-plugin": "^7.4.0",
+        "@typescript-eslint/parser": "^7.4.0",
+        "eslint": "^8.57.0",
+        "typescript": "^5.3.3",
+        "ts-loader": "^9.5.1",
+        "webpack": "^5.91.0",
+        "webpack-cli": "^5.1.4",
+        "@vscode/test-cli": "^0.0.8",
+        "@vscode/test-electron": "^2.3.9"
     }
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run package",
-    "compile": "webpack",
-    "watch": "webpack --watch",
-    "package": "webpack --mode production --devtool hidden-source-map",
-    "compile-tests": "tsc -p . --outDir out",
-    "watch-tests": "tsc -p . -w --outDir out",
-    "pretest": "npm run compile-tests && npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "vscode-test"
-  },
-  "devDependencies": {
-    "@types/vscode": "^1.87.0",
-    "@types/mocha": "^10.0.6",
-    "@types/node": "18.x",
-    "@typescript-eslint/eslint-plugin": "^7.4.0",
-    "@typescript-eslint/parser": "^7.4.0",
-    "eslint": "^8.57.0",
-    "typescript": "^5.3.3",
-    "ts-loader": "^9.5.1",
-    "webpack": "^5.91.0",
-    "webpack-cli": "^5.1.4",
-    "@vscode/test-cli": "^0.0.8",
-    "@vscode/test-electron": "^2.3.9"
-  }
 }

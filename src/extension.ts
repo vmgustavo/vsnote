@@ -3,16 +3,31 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 import {Config} from './utils';
 
+let config = vscode.workspace.getConfiguration('vsnote');
+
 
 export class NoteManager {
 
     constructor() { }
 
-    public async createScratchpad() {
+    public async setDir() {
+        let directoryFromUser = await vscode.window.showInputBox({
+            placeHolder: 'Enter a directory to save the notes:',
+            value: config.get('rootDirectory') as string ?? '/tmp',
+        });
+
+        config.update('rootDirectory', directoryFromUser, true)
+    }
+
+    public async getDir() {
+        vscode.window.showInformationMessage(
+            config.get('rootDirectory') as string ?? 'not set'
+        );
+    }
+
+    public async createNote() {
         // GET ROOT DIRECTORY FROM CONFIG
-        // const config = vscode.workspace.getConfiguration('vsnote');
-        // const rootDirectory: string = config.get<string>('mySetting') ?? "";
-        // vscode.window.showInformationMessage(`rootDirectory: ${rootDirectory}`)
+        let rootDir = Config.getExtensionConfiguration('rootDirectory') as string
 
         // FORMAT DATE
         let today = new Date();
@@ -29,14 +44,14 @@ export class NoteManager {
         // GET FILENAME FROM USER
         const filenameFromUser = await vscode.window.showInputBox({
             placeHolder: 'Enter a filename:',
-            value: `${todayFmt}-`
+            value: `${todayFmt} - `
         })
 
         // CREATE AND OPEN FILE
         let filename = `${filenameFromUser ?? ""}.md`
 
         // TODO: set a directory for the notes
-        let fullPath = path.join('/tmp', filename);
+        let fullPath = path.join(rootDir, filename);
 
         // TODO: if file exists then open file
         fs.writeFileSync(fullPath, '');
@@ -53,7 +68,9 @@ export function activate(context: vscode.ExtensionContext) {
     const noteManager = new NoteManager();
 
     const commands: { [key: string]: (...args: any[]) => any } = {
-        'vsnote.createNote': () => noteManager.createScratchpad(),
+        'vsnote.setDir': () => noteManager.setDir(),
+        'vsnote.getDir': () => noteManager.getDir(),
+        'vsnote.createNote': () => noteManager.createNote(),
     };
 
     for (const command in commands) {

@@ -1,7 +1,7 @@
 {
     "contributes": {
         "configuration": {
-            "title": "VSNoTE",
+            "title": "vsnote",
             "properties": {
                 "vsnote.rootDirectory": {
                     "type": "string",
