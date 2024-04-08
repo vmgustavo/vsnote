@@ -1,9 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as vscode from 'vscode';
-import {Config} from './utils';
-
-let config = vscode.workspace.getConfiguration('vsnote');
 
 
 export class NoteManager {
@@ -11,6 +8,7 @@ export class NoteManager {
     constructor() { }
 
     public async setDir() {
+        const config = vscode.workspace.getConfiguration('vsnote');
         let directoryFromUser = await vscode.window.showInputBox({
             placeHolder: 'Enter a directory to save the notes:',
             value: config.get('rootDirectory') as string ?? '/tmp',
@@ -20,6 +18,7 @@ export class NoteManager {
     }
 
     public async getDir() {
+        const config = vscode.workspace.getConfiguration('vsnote');
         vscode.window.showInformationMessage(
             config.get('rootDirectory') as string ?? 'not set'
         );
@@ -27,7 +26,8 @@ export class NoteManager {
 
     public async createNote() {
         // GET ROOT DIRECTORY FROM CONFIG
-        let rootDir = Config.getExtensionConfiguration('rootDirectory') as string
+        const config = vscode.workspace.getConfiguration('vsnote');
+        let rootDir = config.get('rootDirectory') as string
 
         // FORMAT DATE
         let today = new Date();
@@ -63,8 +63,6 @@ export class NoteManager {
 
 
 export function activate(context: vscode.ExtensionContext) {
-    Config.init(context);
-
     const noteManager = new NoteManager();
 
     const commands: { [key: string]: (...args: any[]) => any } = {
