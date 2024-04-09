@@ -27,3 +27,5 @@ vsce package
 
 code --install-extension vsnote-0.0.1.vsix
 ```
+
+- [VSNotes: Repo Reference](https://github.com/patleeman/VSNotes)
