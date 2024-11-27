@@ -37,13 +37,13 @@ jobs:
         run: |
           npx @vscode/vsce package
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+      - name: Upload release binaries
+        uses: alexellis/upload-assets@0.4.0
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         with:
-          name: vsnote-${{ github.sha }}
-          path: ./*.vsix
+          asset_paths: '["vsnote-*"]'
 
-      # If the run failed, npm log may help to diagnose.
       - name: "(debug) Upload npm log"
         if: ${{ !success() }}
         uses: actions/upload-artifact@v4
