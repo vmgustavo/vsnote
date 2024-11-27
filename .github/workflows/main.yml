@@ -29,9 +29,13 @@ jobs:
           node-version: "22"
           cache: "npm"
 
+      - name: "Install vsce"
+        run: |
+          npm install @vscode/vsce
+
       - name: "Build release"
         run: |
-          npx npx @vscode/vsce package
+          npx @vscode/vsce package
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
