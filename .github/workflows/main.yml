@@ -42,7 +42,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          asset_paths: '["vsnote-*"]'
+          asset_paths: '["./vsnote-*"]'
 
       - name: "(debug) Upload npm log"
         if: ${{ !success() }}
