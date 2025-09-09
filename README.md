@@ -13,13 +13,20 @@ nvm install node
 npm install @vscode/vsce
 ```
 
-4. Package extension
+4. Clone repository locally
+5. Install npm dependencies, run within the repository root directory
+
+```
+npm install
+```
+
+6. Package extension
 
 ```
 npx @vscode/vsce package
 ```
 
-5. Install extension
+7. Install extension
 
 ```
 code --install-extension vsnote-0.0.1.vsix
