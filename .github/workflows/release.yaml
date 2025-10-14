@@ -13,8 +13,6 @@ on:
       - "tsconfig.json"
       - "webpack.*"
       - "!**.md"
-  workflow_dispatch:
-  repository_dispatch:
 
 jobs:
   build:
