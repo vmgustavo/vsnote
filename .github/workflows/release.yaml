@@ -1,8 +1,8 @@
-name: CI
+name: release
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+'
     paths:
@@ -19,6 +19,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions: write-all
 
     steps:
       - uses: actions/checkout@v4
@@ -37,12 +38,14 @@ jobs:
         run: |
           npx @vscode/vsce package
 
-      - name: Upload release binaries
-        uses: alexellis/upload-assets@0.4.0
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
         with:
-          asset_paths: '["./vsnote-*"]'
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: vsnote*
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
 
       - name: "(debug) Upload npm log"
         if: ${{ !success() }}
